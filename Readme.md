@@ -77,7 +77,7 @@ w3m /usr/share/doc/arch-wiki/html/en/$selected_topic.html
 You can save this script as `fzf_archwiki.sh`, make it executable (`chmod +x fzf_archwiki.sh`), and use it along with your main script. Here's how you can use it:
 
 ```bash
-./archwiki -m fzf --preview './fzf_archwiki.sh {}'
+archwiki-offline -m "fzf --preview './fzf_archwiki.sh {}'"
 ```
 
 With this script, the selected ArchWiki topic will be passed to the `fzf_archwiki.sh` script, which will replace spaces with underscores and open the corresponding HTML file using `w3m` for a preview.
