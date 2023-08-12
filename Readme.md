@@ -92,11 +92,12 @@ With this script, the selected ArchWiki topic will be passed to the `fzf_archwik
 Remember to adjust file paths and names according to your actual setup if needed.
 This will allow you to preview the selected topic in the terminal itself before opening it in your browser.
 
-*If you Don't Prefer Other script* you can add this to your .bashrc or .zshrc this will give you an alias to open archwiki in fzf with preview
+* *If you Don't Prefer Other script* you can add this to your .bashrc or .zshrc this will give you an alias to open archwiki in fzf with preview
+
 alias is archwiki
 
 ```bash
-check archwiki-offline && {
+command -v archwiki-offline &>/dev/null && {
 	_temp_file="$(mktemp -q)"
 	cat <<EOF >"$_temp_file"
 #!/bin/bash
