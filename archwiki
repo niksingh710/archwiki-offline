@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# Nikhil Singh <nik.singh710@gmail.com>
+# This will make searching archwikki easy.
+
+# Variables
+_menu_cmd="rofi -dmenu -i -p ArchWiki "
+_opener="xdg-open"
+_lang="en" # for future possibilities to have different lang support
+
+check() {
+	command -v "$1" >/dev/null 2>&1
+}
+
+notify() {
+	# shellcheck disable=SC2015
+	check notify-send && {
+		notify-send "$@"
+	} || {
+		echo "$@"
+	}
+}
+
+main() {
+	[ -d /usr/share/doc/arch-wiki/html ] || {
+		notify "arch-wiki-docs not installed"
+		exit 1
+	}
+
+	wikidir="/usr/share/doc/arch-wiki/html/en"
+	wikidocs="$(find ${wikidir} -iname "*.html")"
+
+	choice=$(echo "$wikidocs" | sed -e "s|${wikidir}/||g" | sed -e "s|.html||g" | sed 's/_/ /g' | sort | eval "$_menu_cmd")
+	[ -z "$choice" ] && exit 0
+	article=$(printf "%s\n" "${wikidir}/${choice}.html" | sed 's/ /_/g')
+	$_opener "$article"
+}
+
+help() {
+	cat <<EOF
+  This is a bash script for quick archwiki search using arch-wiki-docs package.
+
+  flags:
+    -h: Displays This help menu
+    -m: Sets the menu program. e.g 'arch-wiki -m "rofi -dmenu -i"'
+                                   'arch-wiki -m "bemenu"'
+        This program will be used to display list of wiki entry.
+        default is (${_menu_cmd[@]})
+    -o: Sets the opener program. e.g 'arch-wiki -o firefox'
+                                   'arch-wki -o w3m'
+        This program will be used to open entry.
+        default is (${_opener[@]})
+
+    * Note make sure to use -h as last flag to get a preview of your choices in the help menu
+EOF
+}
+
+getArgs() {
+	while [ "$#" -gt 0 ]; do
+		case "$1" in
+		-h | --help)
+			help
+			exit 0
+			;;
+		-m)
+			_menu_cmd=("$2")
+			shift
+			;;
+		-o)
+			_opener=("$2")
+			shift
+			;;
+		*)
+			help
+			echo ""
+			echo "Wrong argument given"
+			exit 1
+			;;
+		esac
+		shift
+	done
+	main
+}
+
+getArgs "$@"
