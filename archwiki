@@ -42,12 +42,12 @@ help() {
 
   flags:
     -h: Displays This help menu
-    -m: Sets the menu program. e.g 'arch-wiki -m "rofi -dmenu -i"'
-                                   'arch-wiki -m "bemenu"'
+    -m: Sets the menu program. e.g 'archwiki -m "rofi -dmenu -i"'
+                                   'archwiki -m "bemenu"'
         This program will be used to display list of wiki entry.
         default is (${_menu_cmd[@]})
-    -o: Sets the opener program. e.g 'arch-wiki -o firefox'
-                                   'arch-wki -o w3m'
+    -o: Sets the opener program. e.g 'archwiki -o firefox'
+                                   'archwki -o w3m'
         This program will be used to open entry.
         default is (${_opener[@]})
 
