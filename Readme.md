@@ -50,6 +50,7 @@ Using the AUR package is the recommended method as it takes care of dependencies
 **Flags**:
 
 - `-h`: Display help information.
+- `-d`: Disown the process. (Does not keep the terminal hanging after opening the file in a browser)
 - `-m MODE`: Select the display mode (`rofi`, `dmenu`, or `fzf`).
 - `-o OPENER`: Specify the opening method for links (`xdg-open`, `firefox`, `chromium`, `w3m`, etc.). Default is `xdg-open`.
 

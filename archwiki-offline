@@ -6,6 +6,7 @@
 # Variables
 _menu_cmd="rofi -dmenu -i -p ArchWiki "
 _opener="xdg-open"
+_disown=false
 _lang="en" # for future possibilities to have different lang support
 
 check() {
@@ -33,7 +34,11 @@ main() {
 	choice=$(echo "$wikidocs" | sed -e "s|${wikidir}/||g" | sed -e "s|.html||g" | sed 's/_/ /g' | sort -n | eval "$_menu_cmd")
 	[ -z "$choice" ] && exit 0
 	article=$(printf "%s\n" "${wikidir}/${choice}.html" | sed 's/ /_/g')
-	$_opener "$article" &>/dev/null && disown &>/dev/null &
+	if $_disown; then
+		$_opener "$article" &>/dev/null &
+	else
+		$_opener "$article"
+	fi
 }
 
 help() {
@@ -42,6 +47,10 @@ help() {
 
   flags:
     -h: Displays This help menu
+    -d: Sets disown flag to true. e.g 'archwiki -d'
+        This will disown the process after opening the entry.
+        Good for using a browser like firefox and chrome. (default is false)
+        *(Not recomended for terminal browsers like w3m)
     -m: Sets the menu program. e.g 'archwiki -m "rofi -dmenu -i"'
                                    'archwiki -m "bemenu"'
         This program will be used to display list of wiki entry.
@@ -61,6 +70,9 @@ getArgs() {
 		-h | --help)
 			help
 			exit 0
+			;;
+		-d)
+			_disown=true
 			;;
 		-m)
 			_menu_cmd=("$2")
