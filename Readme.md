@@ -109,6 +109,19 @@ This enhancement will provide users with an option to enjoy the ArchWiki pages i
 
 Feel free to contribute to this script by opening issues or submitting pull requests on the [GitHub repository](https://github.com/niksingh710/archwiki-offline). Your contributions will be highly appreciated.
 
+
+## Acknowledgements
+
+This project is made possible by the amazing [`arch-wiki-docs`](https://github.com/lahwaacz/arch-wiki-docs) project, which provides the backbone for offline ArchWiki access. A big thank you to the creators and maintainers of this tool for their dedication to the Arch Linux community.
+
+Special thanks to [Lahwaacz](https://github.com/lahwaacz) for developing and maintaining `arch-wiki-docs`. Your work has significantly enriched the Arch Linux experience for users like me.
+
+Without the invaluable efforts put into `arch-wiki-docs`, this project wouldn't have been possible. Thank you!
+
+---
+
+**Note:** This project is not affiliated with or endorsed by `arch-wiki-docs`. It simply builds upon the functionality provided by that project to offer a more streamlined offline ArchWiki access experience.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
