@@ -30,10 +30,10 @@ main() {
 	wikidir="/usr/share/doc/arch-wiki/html/en"
 	wikidocs="$(find ${wikidir} -iname "*.html")"
 
-	choice=$(echo "$wikidocs" | sed -e "s|${wikidir}/||g" | sed -e "s|.html||g" | sed 's/_/ /g' | sort | eval "$_menu_cmd")
+	choice=$(echo "$wikidocs" | sed -e "s|${wikidir}/||g" | sed -e "s|.html||g" | sed 's/_/ /g' | sort -n | eval "$_menu_cmd")
 	[ -z "$choice" ] && exit 0
 	article=$(printf "%s\n" "${wikidir}/${choice}.html" | sed 's/ /_/g')
-	$_opener "$article"
+	$_opener "$article" &>/dev/null && disown &>/dev/null &
 }
 
 help() {
