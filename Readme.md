@@ -92,6 +92,29 @@ With this script, the selected ArchWiki topic will be passed to the `fzf_archwik
 Remember to adjust file paths and names according to your actual setup if needed.
 This will allow you to preview the selected topic in the terminal itself before opening it in your browser.
 
+*If you Don't Prefer Other script* you can add this to your .bashrc or .zshrc this will give you an alias to open archwiki in fzf with preview
+alias is archwiki
+
+```bash
+check archwiki-offline && {
+	_temp_file="$(mktemp -q)"
+	cat <<EOF >"$_temp_file"
+#!/bin/bash
+# Replace spaces with underscores
+selected_topic=\$(echo "\$1" | sed 's/ /_/g')
+
+# Open the HTML file using w3m for preview
+w3m /usr/share/doc/arch-wiki/html/en/\$selected_topic.html
+EOF
+	chmod +x "$_temp_file"
+
+	_cmd="xdg-open"
+	check fzf && _cmd="fzf"
+	check w3m && _cmd="fzf --preview=\"$_temp_file {}\""
+	alias archwiki="archwiki-offline -m '$_cmd'"
+}
+```
+
 ### Dark Mode in Browser
 
 If you prefer using a browser to preview the ArchWiki files instead of `w3m`, you can take advantage of the [Dark Reader](https://darkreader.org/) extension to enable dark mode for the ArchWiki pages. However, there's a catch: when the pages are fetched from the system in offline mode, Dark Reader might not automatically apply the dark theme. To ensure it works seamlessly, follow the instructions below:
