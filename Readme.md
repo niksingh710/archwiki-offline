@@ -110,8 +110,8 @@ EOF
 	chmod +x "$_temp_file"
 
 	_cmd="xdg-open"
-	check fzf && _cmd="fzf"
-	check w3m && _cmd="fzf --preview=\"$_temp_file {}\""
+	command -v fzf &>/dev/null && _cmd="fzf"
+	command -v w3m &>/dev/null && _cmd="fzf --preview=\"$_temp_file {}\""
 	alias archwiki="archwiki-offline -m '$_cmd'"
 }
 ```
