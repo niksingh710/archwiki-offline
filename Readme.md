@@ -91,5 +91,5 @@ Feel free to contribute to this script by opening issues or submitting pull requ
 
 ## License
 
-This project is licensed under the [GPL License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
