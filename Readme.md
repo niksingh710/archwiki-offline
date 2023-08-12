@@ -19,14 +19,14 @@ Absolutely, here's the revised installation section with the "manual" method inc
   yay -S arch-wiki-docs
   ```
 
-3. Clone this repository:
+2. Clone this repository:
 
     ```bash
     git clone https://github.com/niksingh710/archwiki-offline.git
     cd archwiki-offline
     ```
 
-4. Make the script executable:
+3. Make the script executable:
 
     ```bash
     chmod +x archwiki
@@ -85,6 +85,26 @@ With this script, the selected ArchWiki topic will be passed to the `fzf_archwik
 Remember to adjust file paths and names according to your actual setup if needed.
 This will allow you to preview the selected topic in the terminal itself before opening it in your browser.
 
+### Dark Mode in Browser
+
+If you prefer using a browser to preview the ArchWiki files instead of `w3m`, you can take advantage of the [Dark Reader](https://darkreader.org/) extension to enable dark mode for the ArchWiki pages. However, there's a catch: when the pages are fetched from the system in offline mode, Dark Reader might not automatically apply the dark theme. To ensure it works seamlessly, follow the instructions below:
+
+#### For Chrome
+
+1. Open a new tab and enter `chrome://extensions` in the address bar.
+2. Locate "Dark Reader" in the extensions list and click on it.
+3. Enable the option "Allow access to file URLs."
+
+#### For Firefox
+
+1. Type `about:config` in the Firefox address bar and press Enter.
+2. In the search bar, enter `security.fileuri.strict_origin_policy`.
+3. Double-click on the entry to set it to `false`.
+4. Restart Firefox to apply the changes.
+
+These adjustments will ensure that Dark Reader can successfully apply dark mode to the offline ArchWiki pages. If you encounter any issues or have further questions, feel free to create an issue on the [GitHub repository](https://github.com/niksingh710/archwiki-offline). You can also refer to [this issue on Dark Reader](https://github.com/darkreader/darkreader/issues/475) for more information.
+
+This enhancement will provide users with an option to enjoy the ArchWiki pages in dark mode when using a browser for previewing.
 ## Contribution
 
 Feel free to contribute to this script by opening issues or submitting pull requests on the [GitHub repository](https://github.com/niksingh710/archwiki-offline). Your contributions will be highly appreciated.
